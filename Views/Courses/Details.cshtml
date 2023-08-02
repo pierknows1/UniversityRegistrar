@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@using UniversityRegistrar.Models
+@model UniversityRegistrar.Models.Course
+
+<h2>Course Details</h2>
+
+<h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)<h3>
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
+@if(Model.StudentCourses.Count == 0)
+{
+  <h3>No students are enrolled in this course.</h3>
+}
+
+else
+{
+  <h3>Enrolled Students: </h3>
+  <ul>
+ @foreach ( StudentCourse join in Model.StudentCourses)
+    {
+
+        @join.Student.StudentName
+
+    }
+  </ul>
+
+}
+
